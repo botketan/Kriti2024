@@ -28,7 +28,7 @@ const Home =()=> {
     return(
         <div className="w-[100%] my-[5vh]">
             <div className='flex justify-center w-[100%]'>
-                <img src={require('../assests/HomeHero.png')} alt="logo" className="w-[90vw] "/>
+                <img src={require('../assests/HomeHero.png')} alt="logo" className="w-[90vw]"/>
             </div>
             <h2 className='text-4xl text-[#986C4A] font-open font-medium mx-[5vw] my-[10vh]'>HIGH PREP</h2>
             {highprep && <PsView data={highprep}/>}
