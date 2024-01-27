@@ -1,2 +1,3 @@
 import highprep from "./highprep"
-export const schemaTypes = [highprep]
+import midprep from "./midprep"
+export const schemaTypes = [highprep,midprep]

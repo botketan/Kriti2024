@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import PsView from './PsView';
 const Home =()=> {
     const [highprep ,setHighprep] = useState(null);
+    const [midprep , setMidprep] = useState(null);
 
     useEffect(() => {
         client
@@ -22,7 +23,23 @@ const Home =()=> {
 			.then((data) =>{ setHighprep(data);
             console.log(data);})
 			.catch(console.error);
-       
+        client
+			.fetch(
+				`*[_type == "midprep"]{
+                    title,
+                    organiser,
+                    pdf{
+                        asset->{
+                            _id,
+                            url,
+                        },
+                        alt
+                    }
+                }`
+			)
+			.then((data) =>{ setMidprep(data);
+            console.log(data);})
+			.catch(console.error);       
     
       },[])
     return(
@@ -32,6 +49,8 @@ const Home =()=> {
             </div>
             <h2 className='text-4xl text-[#986C4A] font-open font-medium mx-[5vw] my-[10vh]'>HIGH PREP</h2>
             {highprep && <PsView data={highprep}/>}
+            <h2 className='text-4xl text-[#986C4A] font-open font-medium mx-[5vw] my-[10vh]'>MID PREP</h2>
+            {midprep && <PsView data={midprep}/>}
         </div>
     )
 }
