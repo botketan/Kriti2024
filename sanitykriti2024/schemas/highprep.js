@@ -14,6 +14,11 @@ export default {
         title: 'Organiser'
       },
       {
+        name: 'people',
+        type: 'number',
+        title: 'Number of People'
+      },
+      {
         name: 'pdf',
         type: 'file',
         title: 'PDF'
