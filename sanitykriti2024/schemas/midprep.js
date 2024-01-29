@@ -1,7 +1,7 @@
 export default {
-    name: 'highprep',
+    name: 'midprep',
     type: 'document',
-    title: 'High Prep',
+    title: 'Mid Prep',
     fields: [
       {
         name: 'title',
