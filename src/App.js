@@ -15,7 +15,7 @@ function App() {
           <Navbar/>
           <Routes>
             <Route path='/' element={<Home/>} />
-            <Route path = "/:num/:name" element={<Registration />} /> {/* The links for registration pages will be in the card of home page */}
+            <Route path = "/:num/:name" element={<Registration />} /> 
             <Route path = '/home' element={<SecondPage/>}/>
           </Routes>
         </BrowserRouter>

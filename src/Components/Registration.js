@@ -46,20 +46,20 @@ const Registration = () => {
         })
     }
 
-    // useEffect(()=>{
-    //     fetch(`${process.env.REACT_APP_BACKEND_URL}/find`,{
-    //         method:'GET', 
-    //         body:{psName:name}.json, 
-    //         headers:{Authorization: `Bearer ${process.env.REACT_APP_BEARER_TOKEN}`}
-    //     })
-    //     .then((res)=>{
-    //         return res.json()
-    //     })
-    //     .then((data)=>{
-    //         console.log(data.)
-    //     })
-    //     .catch((err)=>{console.log(err)})
-    // },[])
+    useEffect(()=>{
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/find`,{
+            method:'GET', 
+            body:{psName:name}.json, 
+            headers:{Authorization: `Bearer ${process.env.REACT_APP_BEARER_TOKEN}`}
+        })
+        .then((res)=>{
+            return res.json()
+        })
+        .then((data)=>{
+            console.log(data.participants)
+        })
+        .catch((err)=>{console.log(err)})
+    },[])
     
     
     
