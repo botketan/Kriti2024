@@ -48,19 +48,20 @@ const Registration = () => {
     }
 
     useEffect(()=>{
-        fetch(`${process.env.REACT_APP_BACKEND_URL}/find`,{
-            method:'POST',  
-            body:{psName:name}.json,
-            headers:{Authorization: `Bearer ${process.env.REACT_APP_BEARER_TOKEN}`}
-        })
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/hostel/find`,
+            {psName:name},
+            {
+            headers:{ authorization: localStorage.getItem("Kriti2024token")}}
+        )
         .then((res)=>{
-            return res.json()
-            
-        })
-        .then((data)=>{
-            setRegistered(true)
-            setParticipantsData(data.participants)
-            if(participantsData[0].name != undefined){
+            console.log(res)
+            if(res.data.participants)
+            {
+                setRegistered(true)
+                setParticipantsData(res.data.participants)
+            }
+            else
+            {
                 setRegistered(false)
             }
         })
@@ -108,7 +109,7 @@ const Registration = () => {
             <form className="form">
             {/* <input name="ps-name" value={name} style={{visibility:"hidden"}}></input> */}
             <div className="PS-name">{name}</div>
-            {
+            {participantsData&&
                 participantsData.map((entry,index)=>(
                     <div className="registration-box">
                         <h2>{`Participant ${index+1}`}</h2>
