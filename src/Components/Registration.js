@@ -25,7 +25,7 @@ const Registration = () => {
                 arrObject = {}
             }
           }
-          console.log({psName:name, participants})
+          
         // axios.post(`${process.env.BASE_URL}/register`, {})
         axios.post(`${process.env.REACT_APP_BACKEND_URL}/hostel/psRegister`, {psName:name, participants},{ 
             headers:{
@@ -48,23 +48,23 @@ const Registration = () => {
     }
 
     useEffect(()=>{
-        fetch(`${process.env.REACT_APP_BACKEND_URL}/find`,{
-            method:'POST',  
-            body:{psName:name}.json,
-            headers:{Authorization: `Bearer ${process.env.REACT_APP_BEARER_TOKEN}`}
-        })
-        .then((res)=>{
-            return res.json()
-            
-        })
-        .then((data)=>{
-            setRegistered(true)
-            setParticipantsData(data.participants)
-            if(participantsData[0].name != undefined){
-                setRegistered(false)
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/hostel/find`,{psName:name}, {
+            headers:{
+                authorization: localStorage.getItem("Kriti2024token") //change to ${localStorage.getItem(token)} after login is implemented
+            },
+        }).then((res)=>{
+            if(res.status === 200){
+                setRegistered(true)
+                setParticipantsData(res.data.ps.studentsData)
+            }
+            else if(res.status === 400){
+                console.log('New Registration')
             }
         })
-        .catch((err)=>{console.log(err)})
+        .catch((err)=>{
+            console.log(err)
+        })
+   
     },[])
     
     return ( 
@@ -85,6 +85,11 @@ const Registration = () => {
                                 <label htmlFor="roll">Roll Number:</label>
                                 <input type="text" name="rollNo" placeholder="Enter your roll Number" required />
                             </div>
+                            <div className="input-group">
+                                <label htmlFor="email">Email:</label>
+                                <input type="email" name="email" placeholder="Enter your iitg email" required />
+                            </div>
+                            
                             <div className="input-group">
                                 <label htmlFor="year">Year:</label>
                                 <select name="year"  required>
@@ -119,6 +124,10 @@ const Registration = () => {
                         <div className="input-group">
                             <label htmlFor="roll">Roll Number:</label>
                             <input type="text" name="rollNo" value={entry.rollNo} readOnly />
+                        </div>
+                        <div className="input-group">
+                            <label htmlFor="email">Roll Number:</label>
+                            <input type="email" name="email" value={entry.email} readOnly />
                         </div>
                         <div className="input-group">
                             <label htmlFor="year">Year:</label>
