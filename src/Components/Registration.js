@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from 'axios';
 import './RegistrationStyle.css'
 
 const Registration = () => {
@@ -8,6 +7,9 @@ const Registration = () => {
     const navigate = useNavigate()
     const [errorMsg,setErrorMsg] = useState(false)
     const [successMsg, setSuccessMsg] = useState(false)
+    const [registered, setRegistered]  = useState(false)
+    const [participantsData,setParticipantsData]  = useState([...Array(num).keys()])
+    
     // console.log([...Array(parseInt(num)).keys()])
     // console.log(process.env.REACT_APP_BACKEND_URL)
     const handleSubmit = (e)=>{
@@ -46,44 +48,48 @@ const Registration = () => {
         })
     }
 
-    // useEffect(()=>{
-    //     fetch(`${process.env.REACT_APP_BACKEND_URL}/find`,{
-    //         method:'GET', 
-    //         body:{psName:name}.json, 
-    //         headers:{Authorization: `Bearer ${process.env.REACT_APP_BEARER_TOKEN}`}
-    //     })
-    //     .then((res)=>{
-    //         return res.json()
-    //     })
-    //     .then((data)=>{
-    //         console.log(data)
-    //     })
-    //     .catch((err)=>{console.log(err)})
-    // },[])
-    
-    
+    useEffect(()=>{
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/find`,{
+            method:'POST',  
+            body:{psName:name}.json,
+            headers:{Authorization: `Bearer ${process.env.REACT_APP_BEARER_TOKEN}`}
+        })
+        .then((res)=>{
+            return res.json()
+            
+        })
+        .then((data)=>{
+            setRegistered(true)
+            setParticipantsData(data.participants)
+            if(participantsData[0].name != undefined){
+                setRegistered(false)
+            }
+        })
+        .catch((err)=>{console.log(err)})
+    },[])
     
     return ( 
-        <div>
+        <div>{
+            !registered?
             <form className="form" onSubmit={(e)=>handleSubmit(e)}>
                 {/* <input name="ps-name" value={name} style={{visibility:"hidden"}}></input> */}
                 <div className="PS-name">{name}</div>
                 {
-                    [...Array(parseInt(num)).keys()].map((i)=>(
-                        <div className="registration-box">
-                            <h2>{`Participant ${i+1}`}</h2>
+                    [...Array(parseInt(num)).keys()].map((entry)=>(
+                        <div className="registration-box" key={entry}>
+                            <h2>{`Participant ${entry+1}`}</h2>
                             <div className="input-group">
                                 <label htmlFor="name">Name:</label>
-                                <input type="text" name="name" placeholder="Enter your name" />
+                                <input type="text" name="name" placeholder="Enter your name"  required/>
                             </div>
                             <div className="input-group">
                                 <label htmlFor="roll">Roll Number:</label>
-                                <input type="text" name="rollNo" placeholder="Enter your roll Number" />
+                                <input type="text" name="rollNo" placeholder="Enter your roll Number" required />
                             </div>
                             <div className="input-group">
                                 <label htmlFor="year">Year:</label>
-                                <select name="year" >
-                                <option value="">Select Year</option>
+                                <select name="year"  required>
+                                <option value='' >Select Year</option>
                                 <option value="1st">1st</option>
                                 <option value="2nd">2nd</option>
                                 <option value="3rd">3rd</option>
@@ -99,7 +105,34 @@ const Registration = () => {
                 
                 <button className="saveButton" >Register</button> 
 
-            </form>
+            </form>:
+            <form className="form">
+            {/* <input name="ps-name" value={name} style={{visibility:"hidden"}}></input> */}
+            <div className="PS-name">{name}</div>
+            {
+                participantsData.map((entry,index)=>(
+                    <div className="registration-box">
+                        <h2>{`Participant ${index+1}`}</h2>
+                        <div className="input-group">
+                            <label htmlFor="name">Name:</label>
+                            <input type="text" name="name" value={entry.name} readOnly/>
+                        </div>
+                        <div className="input-group">
+                            <label htmlFor="roll">Roll Number:</label>
+                            <input type="text" name="rollNo" value={entry.rollNo} readOnly />
+                        </div>
+                        <div className="input-group">
+                            <label htmlFor="year">Year:</label>
+                            <input type="text" name="year" value={entry.year} readOnly />
+                        </div>
+                        {/* {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>} */}
+                    </div>
+                ))
+            }
+            <button className="saveButton" disabled>Cannot register again</button> 
+
+        </form>
+            }
         </div>
      );
 }
