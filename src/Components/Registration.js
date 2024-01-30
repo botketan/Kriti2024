@@ -126,7 +126,7 @@ const Registration = () => {
                             <input type="text" name="rollNo" value={entry.rollNo} readOnly />
                         </div>
                         <div className="input-group">
-                            <label htmlFor="email">Roll Number:</label>
+                            <label htmlFor="email">Email:</label>
                             <input type="email" name="email" value={entry.email} readOnly />
                         </div>
                         <div className="input-group">
