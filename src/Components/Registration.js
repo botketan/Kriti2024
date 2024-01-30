@@ -86,7 +86,7 @@ const Registration = () => {
                                 <input type="text" name="rollNo" placeholder="Enter your roll Number" required />
                             </div>
                             <div className="input-group">
-                                <label htmlFor="email">Email:</label>
+                                <label htmlFor="email">OutlookId:</label>
                                 <input type="email" name="email" placeholder="Enter your iitg email" required />
                             </div>
                             
