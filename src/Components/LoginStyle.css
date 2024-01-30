@@ -1,0 +1,55 @@
+@font-face {
+  font-family: myFont2;
+  src: url(PoorStory-Regular.ttf);
+}
+
+body {
+    font-family: Arial, sans-serif;
+    /* font-family: myFont; */
+    font-family: myFont2;
+    font-size: 25px;
+    background-color: #fff ;
+    text-align: center;
+  }
+  
+  .login-box {
+    max-width: 400px;
+    /* margin: 100px auto; */
+    margin: 100px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  .input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: left;
+  }
+  
+  .input-group input,
+  .input-group select {
+    background-color: rgba(218, 217, 217, 0.825);
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .login-btn {
+    background-color: rgb(81, 38, 38);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 23px;
+  }
+

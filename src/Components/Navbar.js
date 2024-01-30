@@ -8,7 +8,7 @@ const  Navbar=()=> {
                 Kriti 24'
             </p>
             
-            <Link>
+            <Link to ="/login">
                 <button className="text-white p-1 m-1 bg-[#502515] w-[25vw] md:w-[8vw] lg:w-[8vw] text-xl h-[8vh] rounded-lg ">
                     Login
                 </button>

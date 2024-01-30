@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import './RegistrationStyle.css'
-
+import axios from "axios";
 const Registration = () => {
     const {num,name} = useParams()
     const navigate = useNavigate()
@@ -27,25 +27,24 @@ const Registration = () => {
           }
           console.log({psName:name, participants})
         // axios.post(`${process.env.BASE_URL}/register`, {})
-        fetch(`${process.env.REACT_APP_BACKEND_URL}/register`, {
-            method:'POST', 
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/hostel/psRegister`, {psName:name, participants},{ 
             headers:{
-                Authorization: `Bearer ${process.env.REACT_APP_BEARER_TOKEN}` //change to ${localStorage.getItem(token)} after login is implemented
+                authorization: localStorage.getItem("Kriti2024token") //change to ${localStorage.getItem(token)} after login is implemented
             },
-            body:{psName:name, participants}.json
-        })
+            }
+        )
         .then((res)=>{
             const stat = res.status 
-            if(stat==400){
+            if(stat>=400){
                 setErrorMsg(true)
                 setTimeout(()=>{navigate('/login')},2000)
             }
-            else if(stat==200){
+            else if(stat>=200&&stat<300){
                 setSuccessMsg(true)
                 setTimeout(()=>{navigate('/home')}, 2000)
                
             }
-        })
+        }).catch((err)=>{console.log(err)});
     }
 
     useEffect(()=>{
