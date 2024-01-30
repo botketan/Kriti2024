@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const  Navbar=()=> {
+const  Navbar=({title,link})=> {
     return(
         <div className="md:w-[100%] lg:w-[100%] flex flex-row flex-wrap h-[10vh] justify-between mx-5 px-[3vw] my-[4vh] content-center">
                 <img src={require('../assests/Techboardlogo.png')} alt="logo" className="w-auto  max-w-[60px] md:max-w-[100px] lg:max-w-[100px]"/>
@@ -8,9 +8,9 @@ const  Navbar=()=> {
                 Kriti 24'
             </p>
             
-            <Link to ="/login">
+            <Link to ={link}>
                 <button className="text-white p-1 m-1 bg-[#502515] w-[25vw] md:w-[8vw] lg:w-[8vw] text-xl h-[8vh] rounded-lg ">
-                    Login
+                    {title}
                 </button>
             </Link>
         </div>

@@ -1,11 +1,13 @@
 import client from '../client';
 import React, { useState, useEffect } from 'react';
 import PsView from './PsView';
-const Home =()=> {
+const Home =({setTitle, setLink})=> {
     const [highprep ,setHighprep] = useState(null);
     const [midprep , setMidprep] = useState(null);
 
     useEffect(() => {
+        setTitle("Login");
+        setLink("/login");
         client
 			.fetch(
 				`*[_type == "highprep"]{

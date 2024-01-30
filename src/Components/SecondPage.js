@@ -1,11 +1,24 @@
 import client from '../client';
 import React, { useState, useEffect } from 'react';
 import HostelPsView from './HostelPsView';
-const SecondPage =()=> {
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+const SecondPage =({setLink,setTitle})=> {
     const [highprep ,setHighprep] = useState(null);
     const [midprep , setMidprep] = useState(null);
+    const navigate = useNavigate()
 
     useEffect(() => {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/hostel/getHostel`,{
+            headers:{"authorization":localStorage.getItem("Kriti2024token")}})
+            .then((res)=>{
+                setTitle(res.data.username);
+                setLink('/home');
+            })
+            .catch((err)=>{
+                navigate('/login');
+                console.log(err)}) 
+
         client
 			.fetch(
 				`*[_type == "highprep"]{

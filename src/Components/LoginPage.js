@@ -3,7 +3,7 @@ import './LoginStyle.css';
 // import Navbar1 from './Navbar1.js';
 import Axios from "axios";
 import { useNavigate } from 'react-router-dom';
-function App() {
+function App({setLink, setTitle}) {
   // const [option, setOption] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -36,6 +36,8 @@ function App() {
           console.log(token)
           localStorage.setItem('Kriti2024token',token)
           setLoggedIn(true)
+          setTitle(username);
+          setLink('/home');
           setTimeout(()=>{navigate('/home')}, 1000)
         }
         
