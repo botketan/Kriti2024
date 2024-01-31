@@ -31,7 +31,7 @@ const Registration = () => {
         arrObject = {};
       }
     }
-    console.log({ psName: name, participants })
+    
 
     // axios.post(`${process.env.BASE_URL}/register`, {})
     axios
@@ -102,8 +102,9 @@ const Registration = () => {
           {/* <input name="ps-name" value={name} style={{visibility:"hidden"}}></input> */}
           <button type="submit" disabled style={{display: 'none'}} aria-hidden="true"></button>
           <div className="PS-name">{name}</div>
-          <div className="registration-box">
-              <h2>{`Participant 1`}</h2>
+          {[...Array(parseInt(num)).keys()].map((entry) => (
+            <div className="registration-box" key={entry}>
+              <h2>{`Participant ${entry + 1}`}</h2>
               <div className="input-group">
                 <label htmlFor="name">Name:</label>
                 <input
@@ -162,72 +163,6 @@ const Registration = () => {
               <div className="input-group">
                 <label htmlFor="year">Year:</label>
                 <select name="year" required>
-                  <option value="">Select Year</option>
-                  <option value="1st">1st</option>
-                  <option value="2nd">2nd</option>
-                  <option value="3rd">3rd</option>
-                  <option value="4th">4th</option>
-                </select>
-              </div>
-              {/* {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>} */}
-            </div>
-          {[...Array(parseInt(num-1)).keys()].map((entry) => (
-            <div className="registration-box" key={entry}>
-              <h2>{`Participant ${entry + 2}`}</h2>
-              <div className="input-group">
-                <label htmlFor="name">Name:</label>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Enter your name"
-                  
-                />
-              </div>
-              <div className="input-group">
-                <label htmlFor="roll">Roll Number:</label>
-                <input
-                  type="text"
-                  name="rollNo"
-                  placeholder="Enter your roll Number"
-                  
-                />
-              </div>
-              <div className="input-group">
-                <label htmlFor="email">Email:</label>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Enter your iitg email"
-                />
-              </div>
-              <div className="input-group">
-                <label htmlFor="email">Phone Number:</label>
-                <input
-                  type="text"
-                  name="phoneNumber"
-                  placeholder="Enter your phone number"
-                />
-              </div>
-              <div className="input-group">
-                <label htmlFor="email">Discord ID:</label>
-                <input
-                  type="text"
-                  name="discordID"
-                  placeholder="Enter your discord ID"
-                />
-              </div>
-              <div className="input-group">
-                <label htmlFor="email">Programme:</label>
-                <input
-                  type="text"
-                  name="programme"
-                  placeholder="BTech/MTech..."
-                />
-              </div>
-
-              <div className="input-group">
-                <label htmlFor="year">Year:</label>
-                <select name="year" >
                   <option value="">Select Year</option>
                   <option value="1st">1st</option>
                   <option value="2nd">2nd</option>
