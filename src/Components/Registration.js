@@ -32,15 +32,13 @@ const Registration = () => {
       }
     }
     
-
-    // axios.post(`${process.env.BASE_URL}/register`, {})
     axios
       .post(
         `${process.env.REACT_APP_BACKEND_URL}/hostel/psRegister`,
         { psName: name, participants },
         {
           headers: {
-            authorization: localStorage.getItem("Kriti2024token"), //change to ${localStorage.getItem(token)} after login is implemented
+            authorization: localStorage.getItem("Kriti2024token"), 
           },
         }
       )
@@ -78,7 +76,7 @@ const Registration = () => {
         { psName: name },
         {
           headers: {
-            authorization: localStorage.getItem("Kriti2024token"), //change to ${localStorage.getItem(token)} after login is implemented
+            authorization: localStorage.getItem("Kriti2024token"), 
           },
         }
       )
@@ -99,12 +97,10 @@ const Registration = () => {
     <div>
       {!registered ? (
         <form className="form" onSubmit={(e) => handleSubmit(e)} >
-          {/* <input name="ps-name" value={name} style={{visibility:"hidden"}}></input> */}
           <button type="submit" disabled style={{display: 'none'}} aria-hidden="true"></button>
           <div className="PS-name">{name}</div>
-          {[...Array(parseInt(num)).keys()].map((entry) => (
-            <div className="registration-box" key={entry}>
-              <h2>{`Participant ${entry + 1}`}</h2>
+          <div className="registration-box" key={0}>
+              <h2>{`Participant ${1}`}</h2>
               <div className="input-group">
                 <label htmlFor="name">Name:</label>
                 <input
@@ -133,7 +129,7 @@ const Registration = () => {
                 />
               </div>
               <div className="input-group">
-                <label htmlFor="email">Phone Number:</label>
+                <label htmlFor="phoneNumber">Phone Number:</label>
                 <input
                   type="text"
                   name="phoneNumber"
@@ -142,7 +138,7 @@ const Registration = () => {
                 />
               </div>
               <div className="input-group">
-                <label htmlFor="email">Discord ID:</label>
+                <label htmlFor="discordID">Discord ID:</label>
                 <input
                   type="text"
                   name="discordID"
@@ -151,7 +147,7 @@ const Registration = () => {
                 />
               </div>
               <div className="input-group">
-                <label htmlFor="email">Programme:</label>
+                <label htmlFor="programme">Programme:</label>
                 <input
                   type="text"
                   name="programme"
@@ -170,7 +166,75 @@ const Registration = () => {
                   <option value="4th">4th</option>
                 </select>
               </div>
-              {/* {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>} */}
+            </div>
+          {[...Array(parseInt(num)).keys()].map((entry) => (
+            <div className="registration-box" key={entry}>
+              <h2>{`Participant ${entry + 2}`}</h2>
+              <div className="input-group">
+                <label htmlFor="name">Name:</label>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Enter your name"
+                  
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="roll">Roll Number:</label>
+                <input
+                  type="text"
+                  name="rollNo"
+                  placeholder="Enter your roll Number"
+                  
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="email">Email:</label>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Enter your iitg email"
+                  
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="phoneNumber">Phone Number:</label>
+                <input
+                  type="text"
+                  name="phoneNumber"
+                  placeholder="Enter your phone number"
+                  
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="discordID">Discord ID:</label>
+                <input
+                  type="text"
+                  name="discordID"
+                  placeholder="Enter your discord ID"
+                  
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="programme">Programme:</label>
+                <input
+                  type="text"
+                  name="programme"
+                  placeholder="BTech/MTech..."
+                  
+                />
+              </div>
+
+              <div className="input-group">
+                <label htmlFor="year">Year:</label>
+                <select name="year" >
+                  <option value="">Select Year</option>
+                  <option value="1st">1st</option>
+                  <option value="2nd">2nd</option>
+                  <option value="3rd">3rd</option>
+                  <option value="4th">4th</option>
+                </select>
+              </div>
             </div>
           ))}
           {loginErrorMsg && (
@@ -212,7 +276,7 @@ const Registration = () => {
                 <input type="email" name="email" value={entry.email} readOnly />
               </div>
               <div className="input-group">
-                <label htmlFor="email">Phone Number:</label>
+                <label htmlFor="phoneNumber">Phone Number:</label>
                 <input
                   type="text"
                   name="phoneNumber"
@@ -220,7 +284,7 @@ const Registration = () => {
                 />
               </div>
               <div className="input-group">
-                <label htmlFor="email">Discord ID:</label>
+                <label htmlFor="discordID">Discord ID:</label>
                 <input
                   type="text"
                   name="discordID"
@@ -228,7 +292,7 @@ const Registration = () => {
                 />
               </div>
               <div className="input-group">
-                <label htmlFor="email">Programme:</label>
+                <label htmlFor="programme">Programme:</label>
                 <input
                   type="text"
                   name="programme"
@@ -239,7 +303,6 @@ const Registration = () => {
                 <label htmlFor="year">Year:</label>
                 <input type="text" name="year" value={entry.year} readOnly />
               </div>
-              {/* {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>} */}
             </div>
           ))}
           <button className="saveButton" disabled>
