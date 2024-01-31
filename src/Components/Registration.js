@@ -98,8 +98,9 @@ const Registration = () => {
   return (
     <div>
       {!registered ? (
-        <form className="form" onSubmit={(e) => handleSubmit(e)}>
+        <form className="form" onSubmit={(e) => handleSubmit(e)} >
           {/* <input name="ps-name" value={name} style={{visibility:"hidden"}}></input> */}
+          <button type="submit" disabled style={{display: 'none'}} aria-hidden="true"></button>
           <div className="PS-name">{name}</div>
           <div className="registration-box">
               <h2>{`Participant 1`}</h2>
@@ -127,6 +128,33 @@ const Registration = () => {
                   type="email"
                   name="email"
                   placeholder="Enter your iitg email"
+                  required
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="email">Phone Number:</label>
+                <input
+                  type="text"
+                  name="phoneNumber"
+                  placeholder="Enter your phone number"
+                  required
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="email">Discord ID:</label>
+                <input
+                  type="text"
+                  name="discordID"
+                  placeholder="Enter your discord ID"
+                  required
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="email">Programme:</label>
+                <input
+                  type="text"
+                  name="programme"
+                  placeholder="BTech/MTech..."
                   required
                 />
               </div>
@@ -170,7 +198,30 @@ const Registration = () => {
                   type="email"
                   name="email"
                   placeholder="Enter your iitg email"
-                  
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="email">Phone Number:</label>
+                <input
+                  type="text"
+                  name="phoneNumber"
+                  placeholder="Enter your phone number"
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="email">Discord ID:</label>
+                <input
+                  type="text"
+                  name="discordID"
+                  placeholder="Enter your discord ID"
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="email">Programme:</label>
+                <input
+                  type="text"
+                  name="programme"
+                  placeholder="BTech/MTech..."
                 />
               </div>
 
@@ -224,6 +275,30 @@ const Registration = () => {
               <div className="input-group">
                 <label htmlFor="email">Email:</label>
                 <input type="email" name="email" value={entry.email} readOnly />
+              </div>
+              <div className="input-group">
+                <label htmlFor="email">Phone Number:</label>
+                <input
+                  type="text"
+                  name="phoneNumber"
+                  value = {entry.phoneNumber}
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="email">Discord ID:</label>
+                <input
+                  type="text"
+                  name="discordID"
+                  value = {entry.discordID}
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="email">Programme:</label>
+                <input
+                  type="text"
+                  name="programme"
+                  value = {entry.programme}
+                />
               </div>
               <div className="input-group">
                 <label htmlFor="year">Year:</label>
