@@ -28,6 +28,7 @@ const Registration = () => {
         arrObject = {};
       }
     }
+    
 
     // axios.post(`${process.env.BASE_URL}/register`, {})
     axios
