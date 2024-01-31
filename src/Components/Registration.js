@@ -98,7 +98,7 @@ const Registration = () => {
           {/* <input name="ps-name" value={name} style={{visibility:"hidden"}}></input> */}
           <div className="PS-name">{name}</div>
           {[...Array(parseInt(num)).keys()].map((entry) => (
-            <div className="registration-box" key={entry}>
+           entry===0? (<div className="registration-box" key={entry}>
               <h2>{`Participant ${entry + 1}`}</h2>
               <div className="input-group">
                 <label htmlFor="name">Name:</label>
@@ -139,7 +139,49 @@ const Registration = () => {
                 </select>
               </div>
               {/* {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>} */}
-            </div>
+            </div>):
+            (<div className="registration-box" key={entry}>
+              <h2>{`Participant ${entry + 1}`}</h2>
+              <div className="input-group">
+                <label htmlFor="name">Name:</label>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Enter your name"
+                  
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="roll">Roll Number:</label>
+                <input
+                  type="text"
+                  name="rollNo"
+                  placeholder="Enter your roll Number"
+                  
+                />
+              </div>
+              <div className="input-group">
+                <label htmlFor="email">Email:</label>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Enter your iitg email"
+                  
+                />
+              </div>
+
+              <div className="input-group">
+                <label htmlFor="year">Year:</label>
+                <select name="year" >
+                  <option value="">Select Year</option>
+                  <option value="1st">1st</option>
+                  <option value="2nd">2nd</option>
+                  <option value="3rd">3rd</option>
+                  <option value="4th">4th</option>
+                </select>
+              </div>
+              {/* {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>} */}
+            </div>)
           ))}
           {loginErrorMsg && (
             <p className="errorMsg">

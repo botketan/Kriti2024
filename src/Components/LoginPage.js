@@ -11,6 +11,7 @@ function App({setLink, setTitle}) {
   // const [Err, setErr] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [logInFailed, setLogInFailed] = useState(false);
+  const [msg,setMsg]=useState("")
   const navigate = useNavigate()
 
   const handleLogin = (e) => {
@@ -41,11 +42,15 @@ function App({setLink, setTitle}) {
           setLink('/home');
           setTimeout(()=>{navigate('/home')}, 1000)
         }
-        
+        else if(result.status===401){
+          setLogInFailed(true)
+          setMsg("Invalid username or password")
+        }
         
       })
       .catch(error => {
         setLogInFailed(true)
+        setMsg("Login Failed !")
         console.error('Error during login:', error);
       });
     }
@@ -107,7 +112,7 @@ function App({setLink, setTitle}) {
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       {/* {Err && <p className='Err  text-red-500 w-6/12 text-lg mx-2 my-3'>{Err}</p>} */}
       {loggedIn && <p className="loggedIn text-lime-500 w-6/12 text-lg mx-2 my-3">Logged in!</p>}
-      {logInFailed&&<p className='Err  text-red-500 w-6/12 text-lg mx-2 my-3'>Login Failed !! </p>}  
+      {logInFailed&&<p className='Err  text-red-500 w-6/12 text-lg mx-2 my-3 '>{msg} </p>}  
           
 
     </div>
