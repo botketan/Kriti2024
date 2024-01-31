@@ -8,8 +8,9 @@ function App({setLink, setTitle}) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [Err, setErr] = useState(false);
+  // const [Err, setErr] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [logInFailed, setLogInFailed] = useState(false);
   const navigate = useNavigate()
 
   const handleLogin = (e) => {
@@ -41,9 +42,10 @@ function App({setLink, setTitle}) {
           setTimeout(()=>{navigate('/home')}, 1000)
         }
         
+        
       })
       .catch(error => {
-      
+        setLogInFailed(true)
         console.error('Error during login:', error);
       });
     }
@@ -103,10 +105,10 @@ function App({setLink, setTitle}) {
 
       </form>
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-      {Err && <p className='Err  text-red-500 w-6/12 text-lg mx-2 my-3'>{Err}</p>}
+      {/* {Err && <p className='Err  text-red-500 w-6/12 text-lg mx-2 my-3'>{Err}</p>} */}
       {loggedIn && <p className="loggedIn text-lime-500 w-6/12 text-lg mx-2 my-3">Logged in!</p>}
-
-
+      {logInFailed&&<p className='Err  text-red-500 w-6/12 text-lg mx-2 my-3'>Login Failed !! </p>}  
+          
 
     </div>
     </div>
