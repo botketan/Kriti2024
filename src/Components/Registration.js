@@ -167,7 +167,7 @@ const Registration = () => {
                 </select>
               </div>
             </div>
-          {[...Array(parseInt(num)).keys()].map((entry) => (
+          {[...Array(parseInt(num)-1).keys()].map((entry) => (
             <div className="registration-box" key={entry}>
               <h2>{`Participant ${entry + 2}`}</h2>
               <div className="input-group">
