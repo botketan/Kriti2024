@@ -7,6 +7,7 @@ const SecondPage =({setLink,setTitle})=> {
     const [highprep ,setHighprep] = useState(null);
     const [midprep , setMidprep] = useState(null);
     const [lowprep , setLowprep] = useState(null);
+    const [noprep , setNoprep] = useState(null);
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -73,7 +74,25 @@ const SecondPage =({setLink,setTitle})=> {
 			)
 			.then((data) =>{ setLowprep(data);
             console.log(data);})
-			.catch(console.error);       
+			.catch(console.error); 
+        client
+			.fetch(
+				`*[_type == "noprep"]{
+                    title,
+                    organiser,
+                    people,
+                    pdf{
+                        asset->{
+                            _id,
+                            url,
+                        },
+                        alt
+                    }
+                }`
+			)
+			.then((data) =>{ setNoprep(data);
+            console.log(data);})
+			.catch(console.error);         
     
       },[])
     return(
@@ -85,8 +104,10 @@ const SecondPage =({setLink,setTitle})=> {
             {highprep && <HostelPsView data={highprep}/>}
             <h2 className='text-4xl text-[#986C4A] font-open font-medium mx-[5vw] my-[10vh]'>MID PREP</h2>
             {midprep && <HostelPsView data={midprep}/>}
-            <h2 className='text-4xl text-[#986C4A] font-open font-medium mx-[5vw] my-[10vh]'>LOW&NO PREP</h2>
+            <h2 className='text-4xl text-[#986C4A] font-open font-medium mx-[5vw] my-[10vh]'>LOW PREP</h2>
             {lowprep && <HostelPsView data={lowprep}/>}
+            <h2 className='text-4xl text-[#986C4A] font-open font-medium mx-[5vw] my-[10vh]'>NO PREP</h2>
+            {noprep && <HostelPsView data={noprep}/>}
         </div>
     )
 }
