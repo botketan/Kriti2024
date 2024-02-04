@@ -100,10 +100,10 @@ const SecondPage =({setLink,setTitle})=> {
             <div className='flex justify-center w-[100%]'>
                 <img src={require('../assests/HomeHero.png')} alt="logo" className="w-[90vw]"/>
             </div>
-            <h2 className='text-4xl text-[#986C4A] font-open font-medium mx-[5vw] my-[10vh]'>HIGH PREP</h2>
+            {/* <h2 className='text-4xl text-[#986C4A] font-open font-medium mx-[5vw] my-[10vh]'>HIGH PREP</h2>
             {highprep && <HostelPsView data={highprep}/>}
             <h2 className='text-4xl text-[#986C4A] font-open font-medium mx-[5vw] my-[10vh]'>MID PREP</h2>
-            {midprep && <HostelPsView data={midprep}/>}
+            {midprep && <HostelPsView data={midprep}/>} */}
             <h2 className='text-4xl text-[#986C4A] font-open font-medium mx-[5vw] my-[10vh]'>LOW PREP</h2>
             {lowprep && <HostelPsView data={lowprep}/>}
             <h2 className='text-4xl text-[#986C4A] font-open font-medium mx-[5vw] my-[10vh]'>NO PREP</h2>
