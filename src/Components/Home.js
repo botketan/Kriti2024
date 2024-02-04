@@ -4,6 +4,7 @@ import PsView from './PsView';
 const Home =({setTitle, setLink})=> {
     const [highprep ,setHighprep] = useState(null);
     const [midprep , setMidprep] = useState(null);
+    const [lowprep , setLowprep] = useState(null);
 
     useEffect(() => {
         setTitle("Login");
@@ -42,7 +43,23 @@ const Home =({setTitle, setLink})=> {
 			.then((data) =>{ setMidprep(data);
             console.log(data);})
 			.catch(console.error);       
-    
+        client
+			.fetch(
+				`*[_type == "lowprep"]{
+                    title,
+                    organiser,
+                    pdf{
+                        asset->{
+                            _id,
+                            url,
+                        },
+                        alt
+                    }
+                }`
+			)
+			.then((data) =>{ setLowprep(data);
+            console.log(data);})
+			.catch(console.error); 
       },[])
     return(
         <div className="w-[100%] my-[5vh]">
@@ -53,6 +70,8 @@ const Home =({setTitle, setLink})=> {
             {highprep && <PsView data={highprep}/>}
             <h2 className='text-4xl text-[#986C4A] font-open font-medium mx-[5vw] my-[10vh]'>MID PREP</h2>
             {midprep && <PsView data={midprep}/>}
+            <h2 className='text-4xl text-[#986C4A] font-open font-medium mx-[5vw] my-[10vh]'>LOW PREP</h2>
+            {lowprep && <PsView data={lowprep}/>}
         </div>
     )
 }
