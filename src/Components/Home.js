@@ -70,7 +70,7 @@ const Home =({setTitle, setLink})=> {
             {highprep && <PsView data={highprep}/>}
             <h2 className='text-4xl text-[#986C4A] font-open font-medium mx-[5vw] my-[10vh]'>MID PREP</h2>
             {midprep && <PsView data={midprep}/>}
-            <h2 className='text-4xl text-[#986C4A] font-open font-medium mx-[5vw] my-[10vh]'>LOW PREP</h2>
+            <h2 className='text-4xl text-[#986C4A] font-open font-medium mx-[5vw] my-[10vh]'>LOW&NO PREP</h2>
             {lowprep && <PsView data={lowprep}/>}
         </div>
     )
