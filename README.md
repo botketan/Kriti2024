@@ -1,4 +1,11 @@
-# Getting Started with Create React App
+
+# Kriti 2024 PS Registration Website
+
+Kriti is the annual inter-hostel technical competition of IIT Guwahati. This is the frontend repo for Kriti PS Registration Website.
+
+Backend Repo : [url](https://github.com/DeveshKamble/kriti-2024-backend)
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
